@@ -25,7 +25,7 @@ void periodic_bc(GRID *g);
 void apply_periodic(GRID *g, int f1, int f2, int m);
 void apply_periodic_LHS(GRID *g, int f1, int f2, int m);
 void initflow(GRID *g,SOLN *s,int myid);
-void outputSolution(GRID *g,SOLN *s, int nn, int myid);
+void outputSolution(GRID *g,SOLN *s, int nn, int myid, int nproc);
 void computeForce(GRID *g,SOLN *s);
 void updateSoln(double *qsrc,double *qdest, double *res,double *sigma,
 		double dt,double CFL,double coef,int ncells);

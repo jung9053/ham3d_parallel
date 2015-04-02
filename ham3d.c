@@ -131,10 +131,11 @@ int main(int argc, char **argv)
   // =========================================================
   // now run chosen number of time steps
   // =========================================================
-  if(myid<10)
+  if(myid<10) 
   sprintf(fname,"./output/sol_his00%i.dat",myid);
   else if(myid<100)
   sprintf(fname,"./output/sol_his0%i.dat",myid);
+  
 
   fp = fopen(fname,"w");
 
@@ -144,8 +145,7 @@ int main(int argc, char **argv)
   }
   cpu_time_used=0;
 
-  //ierr = MPI_Barrier(MPI_COMM_WORLD);
-  
+  ierr = MPI_Barrier(MPI_COMM_WORLD);
   // main iteration
   for (n=0;n<nsteps;n++) 
    { 
@@ -171,9 +171,9 @@ int main(int argc, char **argv)
         if((n+1)%nwrite==0||n==0)
         { 
         nn = (n+1)/nwrite;
-        outputSolution(&g[0],&s[0],nn,myid); 
+        outputSolution(&g[0],&s[0],nn,myid,nproc); 
         }
-        //printf("myid:%d, iter:%d\n",myid,n);
+        printf("myid:%d, iter:%d\n",myid,n);
     } 
     fclose(fp);
     printf("finish probram, myid:%d\n",myid);
